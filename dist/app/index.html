@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="theme-color" content="#2196f3">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+  <title>DeliveryBOSS</title>
+  <link rel="stylesheet" href="packages/core/css/framework7.bundle.min.css">
+  <link rel="stylesheet" href="css/app.css">
+  <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+  <link rel="icon" href="img/f7-icon.png">
+  
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+
+</head>
+<body>
+  <div class="se-pre-con"></div>
+  <div id="app">
+    <div class="panel panel-left panel-cover">
+      <div class="view">
+        <div class="page">
+          <div class="navbar">
+            <div class="navbar-inner">
+              <div class="title"></div>
+            </div>
+          </div>
+          <div class="page-content panel-custom">
+            <div class="block">
+              <div class="item-title" style="color:#fff; font-size: medium;">DeliveryBOSS</div>
+            </div>
+            <div class="list links-list">
+              <ul style="background-color: #519822; color:#fff"> 
+                <li>
+                  <a href="map.html" class="link external" style="text-decoration: none;"><i class="material-icons">directions_bike</i>Rider Portal</a>
+                </li>
+                <li>
+                  <a href="/about/" class="popup-open panel-close" data-popup=".app-popup-push" style="text-decoration: none;"><i class="material-icons">info</i>About</a>
+                </li>
+                <li>
+                  <a href="mailto:deliveryboss2019@gmail.com?Subject=Feedback%20to%20DeliveryBoss" class="link external" style="text-decoration: none;"><i class="material-icons">announcement</i>Send Feedback</a>
+                </li>
+                <li>
+                  <a href="https://play.google.com/store/apps/details?id=com.delivery.boss.gh&hl=en" class="link external" style="text-decoration: none;"><i class="material-icons">grade</i>Rate the app</a>
+                </li>
+                <li>
+                  <a href="#" class="panel-close" style="text-decoration: none;" onclick="window.plugins.socialsharing.share('DeliveryBOSS', 'The number one delivery services app in Ghana.', 'https://firebasestorage.googleapis.com/v0/b/delivery-boss-app.appspot.com/o/googleplayfeature.png?alt=media&token=32e31275-7254-4ba0-998f-345cbac5c472', 'https://play.google.com/store/apps/details?id=com.delivery.boss.gh')" ><i class="material-icons">share</i>Share the app</a>
+                </li>
+                <br>
+                <li>
+                  <a href="https://www.facebook.com/Delivery-Boss-111719180509821/" class="link external" style="text-decoration: none;"><i class="f7-icons">logo_facebook</i>Follow us</a>
+                </li>
+                <!-- <li>
+                  <a href="https://twitter.com/IngAfriyie" class="link external" style="text-decoration: none;"><i class="f7-icons">logo_twitter</i>Tweet</a>
+                </li> -->
+                <li>
+                  <a href="https://deliverybossgh.com/" class="link external" style="text-decoration: none;"><i class="material-icons">website</i>Visit our website</a>
+                </li>
+                <li>
+                  <a href="https://deliverybossgh.com/privacy_policy.html" class="link external" style="text-decoration: none;"><i class="material-icons">lock</i>Privacy Policy</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="view view-main view-init safe-areas" data-master-detail-breakpoint="800" data-url="/">
+      <div class="page page-home">
+        <div class="navbar navbar-small">
+          <div class="navbar-bg"></div>
+          <div class="navbar-inner">
+            <div class="bottom-left">
+              <a href="#" class="link icon-only panel-open" data-panel="left">
+                <i class="icon f7-icons if-not-md">menu</i>
+                <i class="icon material-icons md-only">menu</i>
+              </a>
+            </div>
+            <form data-search-container=".all-dispatch" data-search-in="li" class="searchbar searchbar-init">
+                <div class="searchbar-inner">
+                  <div class="searchbar-input-wrap">
+                    <input type="search" placeholder="Place Search..."/>
+                    <i class="searchbar-icon"></i>
+                    <span class="input-clear-button"></span>
+                  </div>
+                  <span class="searchbar-disable-button if-not-aurora">Cancel</span>
+                </div>
+        </form>
+          </div>
+      </div>
+      
+        <!-- Button to scan area for Riders -->
+        <div class="fab fab-extended fab-center-bottom">
+          <a href="#" id='scan-area' style="text-decoration: none;">
+            <i class="icon f7-icons if-not-md">plus</i>
+            <i class="icon material-icons md-only">perm_scan_wifi</i>
+            <div class="fab-text">Scan Area</div>
+          </a>
+        </div>
+
+
+        <!-- Button to open scan area for Riders Sheet -->
+        <div class="fab fab-right-bottom" hidden>
+          <a href="#" id='failed-gps' class="sheet-open" data-sheet=".scan-area-sheet">
+            <div class="fab-text">+</div>
+          </a>
+        </div>
+        
+
+        <!-- Button to open Sheet for checking internet connection-->
+        <div class="fab fab-right-bottom" hidden>
+          <a href="#" id='failed-network' class="popup-open" data-popup=".network-popup-push">
+            <div class="fab-text">+</div>
+          </a>
+        </div>
+		 
+        <div class="page-content ptr-content">
+          <div class="all-dispatch">
+                <ul id="all-media-list" class="list" style="padding: 0; list-style: none; "></ul>
+                <h3 id='printNoDispatch' style='text-align: center;'></h3>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+      <!-- View Rider Info Popup -->
+      <div id='rider-info-modal' class="popup popup-push">
+        <div class="page">
+            <div class="navbar">
+              <div class="navbar-bg"></div>
+              <div class="navbar-inner sliding">
+                <div class="left">
+                  <a href="#" class="link back popup-close">
+                    <i class="icon icon-back"></i>
+                    <span class="if-not-md">Back</span>
+                  </a>
+                </div>
+                <div class="title">Rider Details</div>
+              </div>
+            </div>
+            <div class="page-content">
+              <form class="list form-store-data" id="accountForm">
+                <ul>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <img id="profileURL" src="">
+                        </div>
+                    </li>
+                    <div class="block block-strong req-options" >
+                      <div class="chip">
+                        <div class="chip-media bg-color-white">
+                          <a id="pr-chat" href="" class="link external"><i class="material-icons">chat</i></a>
+                        </div>
+                        <div class="chip-label">Send Location</div>
+                      </div>
+                      <div class="chip">
+                        <div class="chip-media bg-color-white">
+                          <a id="pr-phone" href="" class="link external"><i class="material-icons">phone</i></a>
+                        </div>
+                        <div class="chip-label">Call Rider</div>
+                      </div>
+                      </div>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Rider Name</div>
+                            <div class="item-input-wrap">
+                                <div name="pr-ridername" id="pr-ridername"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <!-- <li class="item-content item-input">
+                        <div class="item-inner">
+                          <div class="item-title item-label color-theme-red">Phone</div>
+                          <div class="item-input-wrap">
+                            <div name="pr-call" id="pr-call"></div>
+                          </div>
+                        </div>
+                      </li> -->
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Motor Plate Number</div>
+                            <div class="item-input-wrap">
+                                <div name="pr-plate" id="pr-plate"></div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">ID Number</div>
+                            <div class="item-input-wrap">
+                              <div name="pr-id" id="pr-id"></div>
+                          </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                      <div class="item-inner">
+                          <div class="item-title item-label">Payment Options</div>
+                          <div class="item-input-wrap">
+                            <div name="pr-payment" id="pr-payment"></div>
+                          </div>
+                      </div>
+                  </li>
+                  <li class="item-content item-input">
+                      <div class="item-inner">
+                          <div class="item-title item-label">Intercity Delivery</div>
+                          <div class="item-input-wrap">
+                            <div name="pr-delivery" id="pr-delivery"></div>
+                          </div>
+                      </div>
+                  </li>
+                </ul>
+                <!-- <input name="setLat" id="setLat" type="text" hidden>
+                <input name="setLng" id="setLng" type="text" hidden> -->
+            </form>
+            </div>
+          </div>
+          
+        </div>
+     <!--End Rider Info Popup -->
+
+    <!-- About App popup -->
+    <div class="popup app-popup-push">
+      <div class="page">
+          <div class="navbar">
+              <div class="navbar-bg"></div>
+              <div class="navbar-inner sliding">
+              <div class="left">
+                  <a href="#" class="link back popup-close">
+                  <i class="icon icon-back"></i>
+                  <span class="if-not-md">Back</span>
+                  </a>
+              </div>
+              <div class="title">About</div>
+              </div>
+          </div>
+          <div class="page-content">
+              <div class="block-title block-title-medium">Welcome to DeliveryBOSS</div>
+              <div class="block">
+                <p>
+                  This app has been designed to be very user-friendly. With this app, you can search for a stationary or moving delivery service. Just open the app to see available delivery services based on proximity and select anyone. The app allows you to call the delivery service right-away or send your location. All our riders have been certified and verified. Your goods are safe in our hands.
+                </p>
+                <p>
+                  You can register to be part of our riders to deliver goods whiles making moner. Registration can be done within the app. Once you are verified, you will be on your way to deliver goods and make money.
+                </p>
+              </div>
+          </div>
+          </div>
+          
+      </div>
+  <!-- End About Popup -->
+
+    <!-- Rider Location Error Modal -->
+    <div class="login-screen scan-area-sheet">
+      <div class="view">
+          <div class="page">
+              <div class="page-content login-screen-content">
+                <div class="sheet-modal-inner">
+                  <div class="block">
+                    <p>We couldn't find nearby Riders. Press the scan button below to search for available Riders.</p>
+                  </div>
+                </div>
+                <br><br><br>
+                  <div class="fab fab-extended fab-center-bottom">
+                    <a href="#" id='scan-area-modal' style="text-decoration: none;">
+                      <i class="icon material-icons md-only">perm_scan_wifi</i>
+                      <div class="fab-text">Scan Area</div>
+                    </a>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </div>
+  <!-- Rider Location Error Modal -->
+
+  <!-- Connectivity Error Modal -->
+  <div class="popup network-popup-push">
+    <div class="page">
+        <div class="page-content">
+          <div class="sheet-modal-inner">
+            <div class="block">
+              <p>We couldn't connect to the internet. Try any of the following:</p>
+              <ol>
+                <li>Press the button below to try again. </li>
+                <li>Turn on the wifi or mobile data if you have not. </li>
+              </ol>
+            </div>
+          </div>
+          <div class="fab fab-extended fab-center-center">
+            <a href="#" id='scan-network-modal' style="text-decoration: none;">
+              <i class="icon material-icons md-only">network_check</i>
+              <div class="fab-text">Try Again</div>
+            </a>
+          </div>
+          </div>
+        </div>      
+    </div>
+    <!-- End Connectivity Error Modal -->
+
+
+  <script src="cordova.js"></script>
+  <script src="packages/core/js/framework7.bundle.min.js"></script>
+  <script src="js/routes.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

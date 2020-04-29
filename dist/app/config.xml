@@ -1,0 +1,96 @@
+<?xml version='1.0' encoding='utf-8'?>
+<widget id="com.delivery.boss.gh" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:android="http://schemas.android.com/apk/res/android" xmlns:cdv="http://cordova.apache.org/ns/1.0" xmlns:gap="http://phonegap.com/ns/1.0">
+    <name>DeliveryBOSS</name>
+    <description>
+        DeliveryBOSS
+    </description>
+    <author email="deliveryboss2019@gmail.com" href="https://deliverybossgh.com">
+        DeliveryBOSS
+    </author>
+    <content src="index.html" />
+  
+	<preference name="phonegap-version" value="cli-9.0.0" />
+	
+    <!-- Android only preferences -->   
+	<preference name="SplashScreenDelay" value="4000" />
+    <preference name="LoadUrlTimeoutValue" value="3000"/>
+	<preference name="InAppBrowserStorageEnabled" value="true"/>
+	<preference name="ErrorUrl" value="myErrorPage.html"/>
+    <!-- Customize your app and platform with the preference element. -->
+    <preference name="DisallowOverscroll" value="true" />
+	<preference name="target-device" value="universal" />
+	<preference name="StatusBarOverlaysWebView" value="false" />
+	<preference name="StatusBarBackgroundColor" value="#519822"/>
+	<preference name="StatusBarStyle" value="darkcontent" />
+    <preference name="cordova.plugins.diagnostic.modules" value="LOCATION WIFI" />
+
+    <icon src="icon.png" />
+    <splash src="splash.png" />
+    <platform name="android">
+	    <icon density="ldpi" src="res/icon/android/ldpi.png" />
+		<icon density="mdpi" src="res/icon/android/mdpi.png" />
+		<icon density="hdpi" src="res/icon/android/hdpi.png" />
+		<icon density="xhdpi" src="res/icon/android/xhdpi.png" />
+		<icon density="xxhdpi" src="res/icon/android/xxhdpi.png" />
+		<icon density="xxxhdpi" src="res/icon/android/xxxhdpi.png" />
+        <!-- <splash density="land-ldpi" src="res/screen/android/drawable-land-ldpi-screen.png" />
+        <splash density="land-mdpi" src="res/screen/android/drawable-land-mdpi-screen.png" />
+        <splash density="land-hdpi" src="res/screen/android/drawable-land-hdpi-screen.png" />
+        <splash density="land-xhdpi" src="res/screen/android/drawable-land-xhdpi-screen.png" />
+        <splash density="land-xxhdpi" src="res/screen/android/drawable-land-xxhdpi-screen.png" />
+        <splash density="land-xxxhdpi" src="res/screen/android/drawable-land-xxxhdpi-screen.png" /> -->
+        <splash density="port-ldpi" src="res/screen/android/splash-port-ldpi.png" />
+        <splash density="port-mdpi" src="res/screen/android/splash-port-mdpi.png" />
+        <splash density="port-hdpi" src="res/screen/android/splash-port-hdpi.png" />
+        <splash density="port-xhdpi" src="res/screen/android/splash-port-xhdpi.png" />
+        <splash density="port-xxhdpi" src="res/screen/android/splash-port-xxhdpi.png" />
+        <splash density="port-xxxhdpi" src="res/screen/android/splash-port-xxxhdpi.png" />
+        <config-file parent="/*" target="AndroidManifest.xml">
+            <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+            <uses-permission android:name="android.permission.CHANGE_WIFI_STATE" />
+            <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+            <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+            <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+            <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+        </config-file>
+    </platform>
+
+	
+	<!-- Define a specific version of PhoneGap to build into your app. -->
+    <plugin name="cordova-plugin-console" source="npm" spec="~1.0.2" />
+    <plugin name="cordova-plugin-dialogs" source="npm" spec="~1.2.0" />
+    <plugin name="cordova-plugin-globalization" source="npm" spec="~1.0.3" />
+    <plugin name="cordova-plugin-inappbrowser" source="npm" spec="~1.3.0" />
+    <plugin name="cordova-plugin-media" source="npm" spec="~2.2.0" />
+    <plugin name="cordova-plugin-network-information" source="npm" spec="~1.2.0" />
+    <plugin name="cordova-plugin-statusbar" source="npm" spec="~2.1.2" />
+	<plugin name="cordova-plugin-request-location-accuracy" source="npm" />
+	<gap:plugin name="cordova-plugin-x-socialsharing" source="npm" />	
+	<plugin name="cordova-plugin-splashscreen" spec="~5.0.2" />
+    <plugin name="cordova-plugin-whitelist" spec="*" />
+    <plugin name="cordova.plugins.diagnostic" spec="*" />
+    <plugin name="cordova-plugin-geolocation" spec="^4.0.1" />
+    <plugin name="cordova-plugin-device" spec="^2.0.1" />
+    <plugin name="cordova-plugin-file" spec="^6.0.1" />
+	<gap:plugin name="onesignal-cordova-plugin" spec="^2.4.1" source="npm" />
+	<preference name="android-build-tool" value="gradle" />
+    <engine name="android" spec="latest" />
+	
+	<access origin="*" />
+	<access origin="whatsapp:*" launch-external="yes" />
+    <allow-intent href="http://*/*" />
+    <allow-intent href="https://*/*" />
+    <allow-intent href="tel:*" />
+    <allow-intent href="sms:*" />
+    <allow-intent href="mailto:*" />
+    <allow-intent href="geo:*" />
+    <platform name="android">
+        <allow-intent href="market:*" />
+    </platform>
+    <platform name="ios">
+        <allow-intent href="itms:*" />
+        <allow-intent href="itms-apps:*" />
+    </platform>
+</widget>
