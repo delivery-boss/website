@@ -1,0 +1,73 @@
+<div class="page">
+  <div class="navbar">
+    <div class="navbar-bg"></div>
+    <div class="navbar-inner sliding">
+      <div class="left">
+        <a href="#" class="link back">
+          <i class="icon icon-back"></i>
+          <span class="if-not-md">Back</span>
+        </a>
+      </div>
+      <div class="title">Contacts List</div>
+    </div>
+  </div>
+  <div class="page-content">
+    <form class="list form-store-data" id="accountForm">
+      <ul>
+          <li class="item-content item-input">
+              <div class="item-inner">
+                  <img id="setProfileImg" src="img/avatar.jpg" style="width: 100px; height: 100px; border-radius: 50%; margin-left: 30%;">
+                  <br>
+                  <div class="item-input-wrap">
+                      <progress value="0" max="100" id="uploader" hidden>0%</progress>
+                      <div class="row">      
+                          <label class="custom-file-upload">
+                              <input type="file" value="upload" id="fileButton" />
+                              <i class="material-icons">cloud_upload</i> Set Profile Picture
+                          </label>
+                          <input name="setProfileURL" id="setProfileURL" type="text">
+                        </div>
+                  </div>
+              </div>
+          </li>
+          <li class="item-content item-input">
+              <div class="item-inner">
+                  <div class="item-title item-label">Rider Name</div>
+                  <div class="item-input-wrap">
+                      <input name="updateRiderName" id="updateRiderName" type="text" placeholder="Your name">
+                      <span class="input-clear-button"></span>
+                  </div>
+              </div>
+          </li>
+          <li class="item-content item-input">
+              <div class="item-inner">
+                  <div class="item-title item-label">Phone (without '0' prefix; eg. 544XXXXXX)</div>
+                  <div class="item-input-wrap">
+                      <input name="updatePhone" id="updatePhone" type="tel" placeholder="Your phone number">
+                      <span class="input-clear-button"></span>
+                  </div>
+              </div>
+          </li>
+          <li class="item-content item-input">
+              <div class="item-inner">
+                  <div class="item-title item-label">Plate Number</div>
+                  <div class="item-input-wrap">
+                      <input name="updatePlate" id="updatePlate" type="tel" placeholder="Your bike plate number">
+                      <span class="input-clear-button"></span>
+                  </div>
+              </div>
+          </li>
+          <li class="item-content item-input">
+              <div class="item-inner">
+                  <div class="item-title item-label">ID Number</div>
+                  <div class="item-input-wrap">
+                      <input name="updateID" id="updateID" type="tel" placeholder="Your Valid ID Number">
+                      <span class="input-clear-button"></span>
+                  </div>
+              </div>
+          </li>
+      </ul>
+      <button id='submitButton' class="button button-fill button-round col" type="submit" style="width: 50%; margin-left: 25%;">Update</button>
+  </form>
+  </div>
+</div>

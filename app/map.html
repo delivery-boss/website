@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no, viewport-fit=cover">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="theme-color" content="#2196f3">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <meta http-equiv="Content-Security-Policy" content="default-src * 'self' 'unsafe-inline' 'unsafe-eval' data: gap:">
+    <title>DeliveryBOSS</title>
+    <link rel="stylesheet" href="packages/core/css/framework7.bundle.min.css">
+    <link rel="stylesheet" href="css/app.css">
+    <link rel="apple-touch-icon" href="img/f7-icon-square.png">
+    <link rel="icon" href="img/f7-icon.png">
+    <link rel="stylesheet" href="//github.com/downloads/lafeber/world-flags-sprite/flags32.css">
+    <!-- <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css" integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ==" crossorigin="" /> -->
+    <script
+    src="https://code.jquery.com/jquery-migrate-3.1.0.min.js"
+    integrity="sha256-ycJeXbll9m7dHKeaPbXBkZH8BuP99SmPm/8q5O+SbBc="
+    crossorigin="anonymous"></script>
+    <!-- <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script> -->
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <div class="panel panel-left panel-cover">
+            <div class="view">
+                <div class="page">
+                    <div class="navbar">
+                        <div class="navbar-inner">
+                            <div class="title"></div>
+                        </div>
+                    </div>
+                    <div class="page-content panel-custom">
+                        <div class="block-title viewRiderName" style="color:#fff; font-size: medium;"></div>
+                        <div class="list links-list">
+                            <ul style="background-color: #519822; color:#fff">
+                                <li>
+                                    <img id="viewProfileImg" src="" class="pb-profile-pic" style="width: 100px; height: 100px; border-radius: 50%; margin-left: 30%;">
+                                </li>
+                                <li>
+                                    <a href="index.html" class="link external" style="text-decoration: none;"><i class="material-icons">directions_bike</i>DeliveryBOSS App</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="sheet-open panel-close" style="text-decoration: none;" data-sheet=".payment-sheet"><i class="material-icons">payment</i>Payment Details</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="popup-open panel-close" style="text-decoration: none;" data-popup=".app-popup-push"><i class="material-icons">info</i>About</a>
+                                </li>
+                                <li>
+                                    <a href="mailto:deliveryboss2019@gmail.com?Subject=Feedback%20to%20DeliveryBoss" class="link external" style="text-decoration: none;"><i class="material-icons">announcement</i>Send Feedback</a>
+                                </li>
+                                <li>
+                                    <a href="https://play.google.com/store/apps/details?id=com.delivery.boss.gh&hl=en" class="link external" style="text-decoration: none;"><i class="material-icons">grade</i>Rate the app</a>
+                                </li>
+                                <li>
+                                    <a href="#" class="panel-close" style="text-decoration: none;" onclick="window.plugins.socialsharing.share('DeliveryBOSS', 'The number one delivery services app in Ghana.', 'https://firebasestorage.googleapis.com/v0/b/delivery-boss-app.appspot.com/o/googleplayfeature.png?alt=media&token=32e31275-7254-4ba0-998f-345cbac5c472', 'https://play.google.com/store/apps/details?id=com.delivery.boss.gh')" ><i class="material-icons">share</i>Share the app</a>
+                                </li>
+                            </ul>
+                            <div class="block">
+                                <div class="row">
+                                    <button id="signin-button" class="col button button-outlined sign-in-link login-screen-open panel-close" data-login-screen=".login-screen">Sign In</button>
+                                    <button id="signout-button" class="col button button-outlined sign-in-link">Sign Out</button>
+                                </div>
+                              </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="view view-main view-init safe-areas" data-master-detail-breakpoint="800" data-url="/">
+            <div class="page page-home">
+                <div class="navbar navbar-small">
+                    <div class="navbar-bg"></div>
+                    <div class="navbar-inner">
+                        <div class="bottom-left">
+                            <a href="#" class="link icon-only panel-open" data-panel="left">
+                                <i class="icon f7-icons if-not-md">menu</i>
+                                <i class="icon material-icons md-only">menu</i>
+                            </a>
+                        </div>
+                        <div class="title sliding">My DeliveryBOSS Portal</div>
+                    </div>
+                </div>
+                <div class="page-content">
+                    <div id="map" style="width: 100%; height: 100%;"></div>
+
+                </div>
+            </div>
+            <!-- Account FAB Left Bottom (Red) -->
+            <div id='account-button' class="fab fab-extended fab-left-bottom">
+                <a class="button popup-open" href="#" data-popup=".popup-push">
+                    <i class="icon material-icons md-only">account_circle</i>
+                </a>
+            </div>
+            <!-- Toggle rider status on and off -->
+            <div id='riderStatusOpen' class="fab fab-extended fab-right-bottom color-green">
+                <a class="button" href="#">
+                    <i class="icon material-icons md-only">phonelink</i>
+                </a>
+            </div>
+            <div id='riderStatusClosed' class="fab fab-extended fab-right-bottom color-red">
+                <a class="button" href="#">
+                    <i class="icon material-icons md-only">phonelink_off</i>
+                </a>
+            </div>
+        </div>
+    </div>
+    <!-- About App popup -->
+    <div class="popup app-popup-push">
+        <div class="page">
+            <div class="navbar">
+                <div class="navbar-bg"></div>
+                <div class="navbar-inner sliding">
+                <div class="left">
+                    <a href="#" class="link back popup-close">
+                    <i class="icon icon-back"></i>
+                    <span class="if-not-md">Back</span>
+                    </a>
+                </div>
+                <div class="title">About</div>
+                </div>
+            </div>
+            <div class="page-content">
+                <div class="block-title block-title-medium">Welcome to DeliveryBOSS</div>
+                <div class="block">
+                    <p>
+                      This app has been designed to be very user-friendly. With this app, you can search for a stationary or moving delivery service. Just open the app to see available delivery services based on proximity and select anyone. The app allows you to call the delivery service right-away or send your location. All our riders have been certified and verified. Your goods are safe in our hands.
+                    </p>
+                    <p>
+                      You can register to be part of our riders to deliver goods whiles making moner. Registration can be done within the app. Once you are verified, you will be on your way to deliver goods and make money.
+                    </p>
+                  </div>
+            </div>
+            </div>
+            
+        </div>
+    <!-- End About Popup -->
+    <!-- Manage Accounts Popup -->
+    <div id='rider-details' class="popup popup-push">
+        <div class="page">
+            <div class="navbar">
+              <div class="navbar-bg"></div>
+              <div class="navbar-inner sliding">
+                <div class="left">
+                  <a href="#" class="link back popup-close">
+                    <i class="icon icon-back"></i>
+                    <span class="if-not-md">Back</span>
+                  </a>
+                </div>
+                <div class="title">Manage Account Details</div>
+              </div>
+            </div>
+            <div class="page-content">
+              <form class="list form-store-data" id="accountForm">               
+                <li class="item-content item-input">
+                    <div class="item-inner">
+                        <div class="item-title item-label" style="color: #519822;">Account Verified</div>
+                        <div class="item-input-wrap">
+                            <input class="account-state" type="text" readonly>
+                        </div>
+                    </div>
+                </li>
+                <ul>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <img id="setProfileImg" src="img/avatar.jpg" class="pb-profile-pic" style="width: 100px; height: 100px; border-radius: 50%; margin-left: 35%;">
+                            <br>
+                            <div class="item-input-wrap">
+                                <progress value="0" max="100" id="uploader" hidden>0%</progress>
+                                <div class="row">      
+                                    <label class="custom-file-upload">
+                                        <input type="file" value="upload" id="fileButton" accept="image/*"/>
+                                        <i class="material-icons">add_a_photo</i> Choose Profile Pic
+                                    </label>
+                                    <input name="setProfileURL" id="setProfileURL" type="text" readonly hidden>
+                                  </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <img id="setIdImg" src="img/avatar.jpg" class="pb-ID-pic" style="width: 150px; height: 100px; margin-left: 28%;">
+                            <br>
+                            <div class="item-input-wrap">
+                                <progress value="0" max="100" id="uploader" hidden>0%</progress>
+                                <div class="row">      
+                                    <label class="id-file-upload">
+                                        <input type="file" value="upload" id="idButton" accept="image/*"/>
+                                        <i class="material-icons">portrait</i> Upload Valid ID
+                                    </label>
+                                    <input name="setIdURL" id="setIdURL" type="text" readonly>
+                                  </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label" style="color: #519822;">Contact Information</div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">*Rider/Company Name</div>
+                            <div class="item-input-wrap">
+                                <input name="updateRiderName" id="updateRiderName" type="text" placeholder="Your name" required>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="item-content">
+                            <div class="item-title item-label">*Phone</div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-media">
+                          +233
+                        </div>
+                        <div class="item-inner">
+                          <div class="item-input-wrap">
+                            <input name="updatePhone" id="updatePhone" type="tel" placeholder="Your phone number" required>
+                            <span class="input-clear-button"></span>
+                          </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Company Location (Select Moving for Individual Riders)</div>
+                            <div class="item-input-wrap">
+                                <select name="updateCompanyLocation" id="updateCompanyLocation">
+                                    <option value="">-- Select --</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">*Plate Number</div>
+                            <div class="item-input-wrap">
+                                <input name="updatePlate" id="updatePlate" type="text" placeholder="Your bike plate number" required>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">*ID Number</div>
+                            <div class="item-input-wrap">
+                                <input name="updateID" id="updateID" type="text" placeholder="Your Valid ID Number" required>
+                                <span class="input-clear-button"></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label" style="color: #519822;">Payment & Delivery</div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">*Payment Options (Select)</div>
+                            <div class="item-input-wrap">
+                                <select name="updatePayment" id="updatePayment" required>
+                                    <option value="Payment on Delivery">Payment on Delivery</option>
+                                    <option value="Payment before Delivery">Payment before Delivery</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">*Intercity Delivery (Select)</div>
+                            <div class="item-input-wrap">
+                                <select name="updateDelivery" id="updateDelivery" required>
+                                    <option value="Yes">Yes</option>
+                                    <option value="No">No</option>
+                                </select>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Latitude</div>
+                            <div class="item-input-wrap">
+                                <input name="updateLat" id="updateLat" type="text" placeholder="Latitude" required>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="item-content item-input">
+                        <div class="item-inner">
+                            <div class="item-title item-label">Longitude</div>
+                            <div class="item-input-wrap">
+                                <input name="updateLng" id="updateLng" type="text" placeholder="Longitude" required>
+                            </div>
+                        </div>
+                    </li>
+                </ul>
+                <input name="setLat" id="setLat" type="text" hidden>
+                <input name="setLng" id="setLng" type="text" hidden>
+                <button id='submitButton' class="button button-fill button-round col" type="submit" style="width: 90%; margin-left: 5%;">Update Account</button>
+            </form>
+            </div>
+          </div>
+          
+        </div>
+    <!-- End Manage Accounts Popup -->
+    <!-- Start Login Screen as Modal -->
+    <div class="login-screen">
+        <div class="view">
+            <div class="page">
+                <div class="page-content login-screen-content">
+                    <div class="login-screen-title">DeliveryBOSS Portal</div>
+                    <button id="proceed-app" name="proceed-app" class="col button button-fill button-round" style="width: 50%; margin-left: 25%;">PROCEED</button>  
+                    <button id="set-profile" name="set-profile" class="col button button-fill button-round popup-open"  data-popup=".popup-push" style="width: 50%; margin-left: 25%;">SET PROFILE</button>  
+                    <!--Start setup account after signup-->      
+                        <!--End setup account after signup-->      
+                        <div class="list">
+                                <ul>
+                                    <li class="item-content item-input item-input-with-value hide-user-box">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">Username</div>
+                                            <div class="item-input-wrap">
+                                                <input type="text" placeholder="Your email" id="email" name="email">
+                                            </div>
+                                        </div>
+                                    </li>
+                                    <li class="item-content item-input hide-password-box">
+                                        <div class="item-inner">
+                                            <div class="item-title item-label">Password</div>
+                                            <div class="item-input-wrap">
+                                                <input type="password" placeholder="Your password" id="password" name="password">
+                                            </div>
+                                        </div>
+                                    </li>
+                                </ul>
+                        </div>
+                        <div class="block hide-signin-box">
+                            <button id="quickstart-sign-in" name="signin" class="col button button-fill button-round" style="width: 50%; margin-left: 25%;">Sign In</button>
+                        </div>
+                        <div class="block block-strong">
+                            <p class="row">
+                                <button id="quickstart-verify-email" name="verify-email" class="col button">Verify Email</button>
+                                <button id="quickstart-password-reset" name="verify-email" class="col button">Reset Password</button>
+                            </p>
+                        </div>
+                        <!-- Container where we'll display the user details -->
+                        <div class="block-footer quickstart-user-details-container" hidden>
+                            Sign-in status: <span id="quickstart-sign-in-status">Unknown</span>
+                            <pre><code id="quickstart-account-details">null</code></pre>
+                        </div>
+                        <div class="block-footer hide-signup-box">
+                            <p>Not having an account? Please sign up below.</p>
+                            <button id="quickstart-sign-up" name="signup" class="col button button-outline" style="width: 50%; margin-left: 25%;">Sign Up</button>
+                            <p hidden ><a class="link login-screen-close" href="#">Close Login Screen</a></p>
+                          </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+   <!-- Payment sheet -->
+  <div class="sheet-modal payment-sheet">
+    <div class="toolbar">
+      <div class="toolbar-inner">
+        <div class="left"></div>
+        <div class="right"><a class="link sheet-close" href="#">Done</a></div>
+      </div>
+    </div>
+    <div class="sheet-modal-inner">
+      <div class="block">
+        <h6>Payment Due:</h6>
+        <input type="text" style="color: #519822;"  id="due-date" name="due-date" >
+        <h6>Payable To:</h6>
+        <div class="item-title"><i class="material-icons">payment</i> MTN Mobile Money</div>
+        <p>Name: Stephen Afriyie</p>
+        <p>Number: 0544784957</p>
+      </div>
+    </div>
+  </div>
+    <!-- End Login Screen as Modal -->
+    <script src="packages/core/js/framework7.bundle.min.js"></script>
+    <script src="js/routes.js"></script>
+    <script src="js/main.js"></script>
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: "AIzaSyA_gnTxfwtkxKZh3Q00PiINNv9wo_UsCLc",
+            authDomain: "delivery-boss-app.firebaseapp.com",
+            databaseURL: "https://delivery-boss-app.firebaseio.com",
+            projectId: "delivery-boss-app",
+            storageBucket: "delivery-boss-app.appspot.com",
+            messagingSenderId: "302420465233",
+            appId: "1:302420465233:web:4e407eb9833299b0be8a70",
+            measurementId: "G-N6Q4L1PEXF"
+        };
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+
+        var db = firebase.firestore();
+
+        // Dom7
+        var $$ = Dom7;
+
+        function initializeMapAndLocator() {
+            // Create full-layout notification to inform the user upon successfull submission
+            var submitNotification = app.notification.create({
+                icon: '<i class="icon material-icons">add_alert</i>',
+                title: 'DeliveryBOSS',
+                //titleRightText: 'now',
+                subtitle: 'Submission Notice',
+                text: 'Hello, your submission was successfull!',
+                closeTimeout: 3000,
+            });
+
+
+            // Create full-layout image loading notification
+            var imgLoadNotification = app.notification.create({
+                icon: '<i class="icon material-icons">add_alert</i>',
+                title: 'DeliveryBOSS',
+                //titleRightText: 'now',
+                subtitle: 'Loading image...Please wait...',
+            });
+
+            // Create full-layout image success notification
+            var imgSuccessNotification = app.notification.create({
+                icon: '<i class="icon material-icons">add_alert</i>',
+                title: 'DeliveryBOSS',
+                closeTimeout: 3000,
+                subtitle: 'Image loaded successfully!',
+            });
+
+
+            // Create full-layout notification to inform the user upon failed submission
+            var failedNotification = app.notification.create({
+                icon: '<i class="icon material-icons">warning</i>',
+                title: 'DeliveryBOSS',
+                //titleRightText: 'now',
+                subtitle: 'Submission Notice',
+                text: 'Hello, your submission failed. Please try again later!',
+                closeTimeout: 3000,
+            });
+
+            // Create full-layout notification to inform the user that his account is not verified
+            var accountNotification = app.notification.create({
+                icon: '<i class="icon material-icons">warning</i>',
+                title: 'DeliveryBOSS',
+                //titleRightText: 'now',
+                subtitle: 'Account Notice',
+                text: 'Hello, your account is not verified. You will not be able to go online and  take requests.</b> Kindly ensure that all arears are paid.</b>  Please contact your administrator if this is an error.',
+                closeTimeout: 10000,
+            });
+
+
+            db.collection("locality").doc("name").get().then(function(doc) {
+                var ele = document.getElementById('updateCompanyLocation');
+                for (var i = 0; i < doc.data()["localitynames"].length; i++) {
+                    // POPULATE SELECT ELEMENT WITH JSON.
+                    ele.innerHTML = ele.innerHTML +
+                        '<option value="' + doc.data()["localitynames"][i] + '">' + doc.data()["localitynames"][i] + '</option>';
+                }
+            }).catch(function(error) {
+                console.log("Error getting document:", error);
+            });
+
+
+
+            // db.collection("locality").doc("name").set({
+            //     localitynames: [
+            //                 'Moving',
+            //                 'Aburi',
+            //                 'Accra',
+            //                 'Adenta East',
+            //                 'Aflao',
+            //                 'Agogo',
+            //                 'Agona Swedru',
+            //                 'Akim Oda',
+            //                 'Akim Swedru',
+            //                 'Akropong',
+            //                 'Akwatia',
+            //                 'Anloga',
+            //                 'Anomabu',
+            //                 'Apam',
+            //                 'Asamankese',
+            //                 'Ashaiman',
+            //                 'Axim',
+            //                 'Banda Ahenkro',
+            //                 'Bawku',
+            //                 'Bechem',
+            //                 'Begoro',
+            //                 'Bekwai',
+            //                 'Berekum',
+            //                 'Bibiani',
+            //                 'Bolgatanga',
+            //                 'Cape Coast',
+            //                 'Dome',
+            //                 'Drobo',
+            //                 'Duayaw Nkwanta',
+            //                 'Dunkwa-on-Offin',
+            //                 'Effiakuma',
+            //                 'Ejura',
+            //                 'Elmina',
+            //                 'Foso',
+            //                 'Gbawe',
+            //                 'Ho',
+            //                 'Hohoe',
+            //                 'Kade',
+            //                 'Keta',
+            //                 'Kete-Krachi',
+            //                 'Kibi',
+            //                 'Kintampo',
+            //                 'Kintampo',
+            //                 'Koforidua',
+            //                 'Konongo',
+            //                 'Kpandae',
+            //                 'Kpandu',
+            //                 'Kumasi',
+            //                 'Lashibi',
+            //                 'Madina',
+            //                 'Mampong',
+            //                 'Mpraeso',
+            //                 'Mumford',
+            //                 'Navrongo',
+            //                 'Nkawkaw',
+            //                 'Nsawam',
+            //                 'Nungua',
+            //                 'Nyakrom',
+            //                 'Nyankpala',
+            //                 'Obuasi',
+            //                 'Oduponkpehe',
+            //                 'Prestea',
+            //                 'Salaga',
+            //                 'Saltpond',
+            //                 'Savelugu',
+            //                 'Sekondi-Takoradi',
+            //                 'Shama',
+            //                 'Somanya',
+            //                 'Suhum',
+            //                 'Sunyani',
+            //                 'Tafo',
+            //                 'Taifa',
+            //                 'Tamale',
+            //                 'Tarkwa',
+            //                 'Techiman',
+            //                 'Tema',
+            //                 'Tema New Town',
+            //                 'Teshie',
+            //                 'Wa',
+            //                 'Wenchi',
+            //                 'Winneba',
+            //                 'Yendi'
+            //             ]
+            //           }).then(function() {
+            //             console.log('Success');                    
+            //           }).catch(function() {
+            //             console.log('Error');
+            //           })
+
+
+            
+            document.querySelector('#riderStatusOpen').addEventListener('click', ()=>{
+                return db.collection("app").doc(globalEmail).update({
+                    status: 'closed'
+                }).then(
+                    function updateDiv()
+                {
+                    location.reload();
+                }
+                )
+
+            })
+
+            document.querySelector('#riderStatusClosed').addEventListener('click', ()=>{
+                //Check if user account has not been verified and prompt him
+                if(document.querySelector(".account-state").value==='No'){
+                    accountNotification.open();
+                }else{
+                    return db.collection("app").doc(globalEmail).update({
+                    status: 'open'
+                    }).then(
+                        function updateDiv()
+                    {
+                        location.reload();
+                    }
+                    )
+                }
+
+
+            })
+
+
+            // Get File Upload Elements
+            var uploader = document.getElementById("uploader");
+            var fileButton = document.getElementById("fileButton");
+
+            // Listen for file selection when setting the profile image
+            fileButton.addEventListener("change", function(e) {
+                //Get file
+                var file = e.target.files[0];
+
+                //Create a storage ref
+                var storageRef = firebase.storage().ref('app/' + file.name);
+
+                //Upload file
+                var uploadTask = storageRef.put(file);
+
+                // Register three observers:
+                // 1. 'state_changed' observer, called any time the state changes
+                // 2. Error observer, called on failure
+                // 3. Completion observer, called on successful completion
+                uploadTask.on('state_changed', function(snapshot) {
+                    // Observe state change events such as progress, pause, and resume
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    imgLoadNotification.open();
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    // uploader.value = progress;
+                    if(progress === 100){      
+                        imgLoadNotification.close();               
+                        imgSuccessNotification.open();
+                    }
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                        case firebase.storage.TaskState.PAUSED: // or 'paused'
+                            console.log('Upload is paused');
+                            break;
+                        case firebase.storage.TaskState.RUNNING: // or 'running'
+                            console.log('Upload is running');
+                            break;
+                    }
+                }, function(error) {
+                    // Handle unsuccessful uploads
+                }, function() {
+                    // Handle successful uploads on complete
+                    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    document.querySelector("#setProfileURL").value = downloadURL;
+
+                    firebase.auth().onAuthStateChanged(function(user) {
+                    if (user) {
+                      //Update user info into Firebase Authentication
+                      user.updateProfile({
+                        photoURL: document.querySelector("#setProfileURL").value
+                      }).then(function() {
+                        console.log('Success');
+                      }).catch(function(error) {
+                        // An error happened.
+                        console.log('Error');
+                      });
+                    }
+                    })
+                    db.collection("app").doc(globalEmail).update({
+                        profileURL: document.querySelector("#setProfileURL").value
+                    }).then(function() {
+                        //Do something
+                        location.reload();
+                    }).catch(function() {
+                        //Do something
+                    })
+                    });
+                });
+
+            });
+
+
+            // Listen for file selection when setting the profile image
+            idButton.addEventListener("change", function(e) {
+                //Get file
+                var file = e.target.files[0];
+
+                //Create a storage ref
+                var storageRef = firebase.storage().ref('app/' + file.name);
+
+                //Upload file
+                var uploadTask = storageRef.put(file);
+
+                // Register three observers:
+                // 1. 'state_changed' observer, called any time the state changes
+                // 2. Error observer, called on failure
+                // 3. Completion observer, called on successful completion
+                uploadTask.on('state_changed', function(snapshot) {
+                    // Observe state change events such as progress, pause, and resume
+                    // Get task progress, including the number of bytes uploaded and the total number of bytes to be uploaded
+                    imgLoadNotification.open();
+                    var progress = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                    // uploader.value = progress;
+                    if(progress == 100){                     
+                        imgLoadNotification.close();               
+                        imgSuccessNotification.open();
+                    }
+                    console.log('Upload is ' + progress + '% done');
+                    switch (snapshot.state) {
+                        case firebase.storage.TaskState.PAUSED: // or 'paused'
+                            console.log('Upload is paused');
+                            break;
+                        case firebase.storage.TaskState.RUNNING: // or 'running'
+                            console.log('Upload is running');
+                            break;
+                    }
+                }, function(error) {
+                    // Handle unsuccessful uploads
+                }, function() {
+                    // Handle successful uploads on complete
+                    // For instance, get the download URL: https://firebasestorage.googleapis.com/...
+                    uploadTask.snapshot.ref.getDownloadURL().then(function(downloadURL) {
+                    document.querySelector("#setIdURL").value = downloadURL;
+                    db.collection("app").doc(globalEmail).update({
+                        idURL: document.querySelector("#setIdURL").value
+                    }).then(function() {
+                        //Do something
+                        location.reload();
+                    }).catch(function() {
+                        //Do something
+                    })
+                    });
+                });
+
+            });
+
+
+
+        }
+
+        initializeMapAndLocator();
+    </script>
+    <script>
+        // Note: This example requires that you consent to location sharing when
+        // prompted by your browser. If you see the error "The Geolocation service
+        // failed.", it means you probably did not give permission for the browser to
+        // locate you.
+        var map, infoWindow;
+        function initMap() {
+          map = new google.maps.Map(document.getElementById('map'), {
+            center: {lat: -34.397, lng: 150.644},
+            zoom: 6
+          });
+          infoWindow = new google.maps.InfoWindow;
+  
+          // Try HTML5 geolocation.
+          if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+              var pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+              };
+  
+              infoWindow.setPosition(pos);
+              infoWindow.setContent('Location found.');
+              infoWindow.open(map);
+              map.setCenter(pos);
+              document.querySelector("#updateLat").value = pos.lat;
+              document.querySelector("#updateLng").value = pos.lng;
+            }, function() {
+              handleLocationError(true, infoWindow, map.getCenter());
+            });
+          } else {
+            // Browser doesn't support Geolocation
+            handleLocationError(false, infoWindow, map.getCenter());
+          }
+        }
+  
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+          infoWindow.setPosition(pos);
+          infoWindow.setContent(browserHasGeolocation ?
+                                'Error: The Geolocation service failed.' :
+                                'Error: Your browser doesn\'t support geolocation.');
+          infoWindow.open(map);
+        }
+      </script>
+      <script async defer
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBkzOB3p5_nGlbtzZzcZVWeG5oL6Qq0Jz4&callback=initMap">
+      </script>
+    <script src="cordova.js"></script>
+    <script src="js/login.js"></script>
+
+</body>
+
+</html>

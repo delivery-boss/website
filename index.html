@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <!-- Basic -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">   
+   
+    <!-- Mobile Metas -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+ 
+     <!-- Site Metas -->
+    <title>DeliveryBoss - Ghana's number one delivery service app</title>  
+    <meta name="keywords" content="">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Site Icons -->
+    <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <!-- Site CSS -->
+    <link rel="stylesheet" href="style.css">    
+    <!-- Responsive CSS -->
+    <link rel="stylesheet" href="css/responsive.css">
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="css/custom.css">
+	
+	<!-- <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js" integrity="sha512-GffPMF3RvMeYyc1LWMHtK8EbPv0iNZ8/oTtHPx9/cc2ILxQ+u905qIwdpULaqDkyBKgOaB57QTMg7ztg8Jm2Og==" crossorigin=""></script> -->
+    <!-- Firebase App (the core Firebase SDK) is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-app.js"></script>
+
+    <!-- Add Firebase products that you want to use -->
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-storage.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.1/firebase-firestore.js"></script>
+
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+
+</head>
+<body class="app_version" data-spy="scroll" data-target="#navbarApp" data-offset="98">
+
+    <!-- LOADER -->
+    <div id="preloader">
+        <img class="preloader" src="images/loaders/loader-app.gif" alt="">
+    </div><!-- end loader -->
+    <!-- END LOADER -->
+    <header class="header header_style_01">
+        <nav class="navbar header-nav navbar-expand-lg">
+            <div class="container">
+				<a class="navbar-brand" href="index.html"><img src="images/logos/logo-app.png" alt="image"></a>
+				<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarApp" aria-controls="navbarApp" aria-expanded="false" aria-label="Toggle navigation">
+					<span></span>
+					<span></span>
+					<span></span>
+				</button>
+                <div class="collapse navbar-collapse justify-content-end" id="navbarApp">
+                    <ul class="navbar-nav">
+                        <li><a class="nav-link active" href="#home">Home</a></li>
+                        <li><a class="nav-link" href="#features">Features</a></li>
+						<li><a class="nav-link" href="#download">Download</a></li>
+						<li><a class="nav-link" href="app/index.html" target="_blank">Web App</a></li>
+                        <li><a class="nav-link" href="#pricing">Pricing</a></li>
+                        <li><a class="nav-link" href="#faqs">FAQs</a></li>
+						<li><a class="nav-link" href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>	
+	
+	<section id="home" class="cd-hero js-cd-hero">
+		<ul class="cd-hero__slider">
+			<li class="cd-hero__slide cd-hero__slide--selected js-cd-slide">
+				<div class="cd-hero__content cd-hero__content--half-width">
+					<h2>DeliveryBOSS</h2>
+					<p>Ghana's number one delivery service app</p>
+					<a href="https://play.google.com/store/apps/details?id=com.delivery.boss.gh&hl=en" target="_blank" class="hvr-bounce-to-right cd-hero__btn">GooglePlay</a>
+					<a href="app/index.html" target="_blank" class="hvr-bounce-to-right cd-hero__btn cd-hero__btn--secondary">Web App</a>
+				</div> <!-- .cd-hero__content -->
+
+				<div class="cd-hero__content cd-hero__content--half-width cd-hero__content--img">
+					<img src="uploads/app_iphone_01.png" class="img-fluid" alt="tech 1">
+				</div> <!-- .cd-hero__content -->
+			</li>
+
+		</ul> <!-- .cd-hero__slider -->
+	</section> <!-- .cd-hero -->
+
+	
+	<div id="about" class="section wb">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="section-title text-center">
+						<h3>About Us</h3>
+						<p>This app has been designed to be very user-friendly. With this app, you can search for a stationary or moving delivery service. Just open the app to see available delivery services based on proximity and select anyone. The app allows you to call the delivery service right-away or send your location. All our riders have been certified and verified. Your goods are safe in our hands.</p>
+					</div><!-- end title -->
+				</div>
+			</div>
+			<div class="row align-items-center">
+				<div class="col-lg-7 col-md-6">
+					<div class="about-left">
+						<img src="uploads/about-01.png" class="img-fluid" alt="" />
+					</div>
+				</div>
+				<div class="col-lg-5 col-md-6">
+					<div class="about-right">
+						<h2>Make money riding </h2>
+						<p>You can register to be part of our riders to deliver goods whiles making money. Registration can be done within the app. Once you are verified, you will be on your way to deliver goods and make money.</p>
+					</div>
+				</div>
+			</div>
+			
+			<div class="row align-items-center">
+				<div class="col-lg-5 col-md-6">
+					<div class="about-right">
+						<h2>Safe & Secured </h2>
+						<p>All our riders have been certified and verified. Your goods are safe in our hands.</p>
+					</div>
+				</div>
+				<div class="col-lg-7 col-md-6">
+					<div class="about-left">
+						<img src="uploads/about-02.png" class="img-fluid" alt="" />
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</div>
+	
+    <div id="features" class="section lb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>The Rider 6 Steps Process</h3>
+                <p class="lead">It is easier to make money riding with us than you thought<br>by just following the six processes below!</p>
+            </div><!-- end title -->
+
+            <div class="row">
+				<div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-download effect-1"></i>		
+						</div>
+						<h2>Download & Install</h2>
+						<p>Download the app from the Google PlayStore or visit the link to use the web version.</p>
+					</div>
+                </div><!-- end col -->
+                <div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-folder effect-1"></i>
+						</div>
+						<h2>Rider Registration</h2>
+						<p>Create an account and login. Tell us a little about yourself.</p>
+					</div>
+                </div><!-- end col -->
+				<div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-cer-file-format effect-1"></i>
+						</div>
+						<h2>Rider Verification</h2>
+						<p>Our team will then verify your information right away to confirm that you are not a robot.</p>
+					</div>
+                </div><!-- end col -->
+				<div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-price-tag effect-1" ></i>
+						</div>
+						<h2>Rider Payment</h2>
+						<p>You will then be required to pay a non-refundable fee which is renewable monthly. You can pay yearly if you choose to.</p>
+					</div>
+                </div><!-- end col -->
+				<div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-hosting effect-1"></i>
+						</div>
+						<h2>Go Online</h2>
+						<p>You wil be notified once your account is verified so that you can go online and start to take deliveries.</p>
+					</div>
+                </div><!-- end col -->
+				<div class="col-md-4">
+                    <div class="services-inner-box">
+						<div class="ser-icon">
+							<i class="flaticon-money effect-1"></i>
+						</div>
+						<h2>Make Money</h2>
+						<p>Voila!!! Start making money by taking rides at your own convenience. No commissions. You keep everything you receive.</p>
+					</div>
+                </div><!-- end col -->
+            </div>
+			
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <div class="how-its-work clearfix">
+        <div class="hc colon1">
+            <h2>1</h2>
+            <h3>Download the App</h3>
+            <p>Downloading the DeliveryBoss app is as easy as ABC..Get it from playstore or simply use the web app.</p>
+        </div><!-- end col -->
+
+        <div class="hc colon2">
+            <h2>2</h2>
+            <h3>Search for Riders</h3>
+            <p>Simply open the app to see a list of avaliable riders. You can also search from a desired locality..</p>
+        </div><!-- end col -->
+
+        <div class="hc colon3">
+            <h2>3</h2>
+            <h3>Choose Rider</h3>
+            <p>Select a rider and tap to call through the app. You can also share your location with the rider..</p>
+        </div><!-- end col -->  
+
+        <div class="hc colon4">
+            <h2>4</h2>
+            <h3>Enjoy & Rate us!</h3>
+            <p>Do you like our app? Do you have concerns?. Rate us or comment on the PlayStore..</p>
+        </div><!-- end col -->  
+    </div><!-- end how-its-work -->
+
+    <div id="screenshots" class="section wb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Screenshots of the App</h3>
+            </div><!-- end title -->
+
+            <div class="owl-screenshots swiper-container">
+				<div class="mobilescreen-image"></div>
+				<div class="swiper-wrapper">
+					<div class="swiper-slide">
+						<div class="service-widget">
+							<div class="post-media entry wow fadeIn">
+								<a href="uploads/screenshot_01.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+								<img src="uploads/screenshot_01.jpg" alt="" class="img-fluid img-rounded">
+								<div class="magnifier"></div>
+							</div>
+						</div><!-- end service -->
+					</div>
+					<div class="swiper-slide">
+						<div class="service-widget">
+							<div class="post-media entry wow fadeIn">
+								<a href="uploads/screenshot_02.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+								<img src="uploads/screenshot_02.jpg" alt="" class="img-fluid img-rounded">
+								<div class="magnifier"></div>
+							</div>
+						</div><!-- end service -->
+					</div>
+					<div class="swiper-slide">
+						<div class="service-widget">
+							<div class="post-media entry wow fadeIn">
+								<a href="uploads/screenshot_03.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+								<img src="uploads/screenshot_03.jpg" alt="" class="img-fluid img-rounded">
+								<div class="magnifier"></div>
+							</div>
+						</div><!-- end service -->
+					</div>
+					<div class="swiper-slide">
+						<div class="service-widget">
+							<div class="post-media entry wow fadeIn">
+								<a href="uploads/screenshot_04.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+								<img src="uploads/screenshot_04.jpg" alt="" class="img-fluid img-rounded">
+								<div class="magnifier"></div>
+							</div>
+						</div><!-- end service -->
+					</div>
+					<div class="swiper-slide">
+						<div class="service-widget">
+							<div class="post-media entry wow fadeIn">
+								<a href="uploads/screenshot_05.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+								<img src="uploads/screenshot_05.jpg" alt="" class="img-fluid img-rounded">
+								<div class="magnifier"></div>
+							</div>
+						</div><!-- end service -->
+					</div>
+					<div class="swiper-slide">
+						<div class="service-widget">
+							<div class="post-media entry wow fadeIn">
+								<a href="uploads/screenshot_06.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+								<img src="uploads/screenshot_06.jpg" alt="" class="img-fluid img-rounded">
+								<div class="magnifier"></div>
+							</div>
+						</div><!-- end service -->
+					</div>
+					<div class="swiper-slide">
+						<div class="service-widget">
+							<div class="post-media entry wow fadeIn">
+								<a href="uploads/screenshot_01.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+								<img src="uploads/screenshot_01.jpg" alt="" class="img-fluid img-rounded">
+								<div class="magnifier"></div>
+							</div>
+						</div><!-- end service -->
+					</div>
+					<div class="swiper-slide">
+						<div class="service-widget">
+							<div class="post-media entry wow fadeIn">
+								<a href="uploads/screenshot_02.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+								<img src="uploads/screenshot_02.jpg" alt="" class="img-fluid img-rounded">
+								<div class="magnifier"></div>
+							</div>
+						</div><!-- end service -->
+					</div>
+					<div class="swiper-slide">
+						<div class="service-widget">
+							<div class="post-media entry wow fadeIn">
+								<a href="uploads/screenshot_03.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+								<img src="uploads/screenshot_03.jpg" alt="" class="img-fluid img-rounded">
+								<div class="magnifier"></div>
+							</div>
+						</div><!-- end service -->
+					</div>
+					<div class="swiper-slide">
+						<div class="service-widget">
+							<div class="post-media entry wow fadeIn">
+								<a href="uploads/screenshot_04.jpg" data-rel="prettyPhoto[gal]" class="hoverbutton global-radius"><i class="flaticon-unlink"></i></a>
+								<img src="uploads/screenshot_04.jpg" alt="" class="img-fluid img-rounded">
+								<div class="magnifier"></div>
+							</div>
+						</div><!-- end service -->
+					</div>
+				</div>
+				<div class="swiper-pagination"></div>
+				<div class="swiper-button-next">
+					<i class="fa fa-angle-right" aria-hidden="true"></i>
+				</div>
+				<div class="swiper-button-prev">
+					<i class="fa fa-angle-left" aria-hidden="true"></i>
+				</div>
+            </div><!-- end row -->			
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+    <div id="download" class="section noover download-bg">
+        <div class="container">
+            <div class="row align-items-center text-center">
+                <div class="col-md-6 col-sm-12">
+                    <div class="customwidget text-left">
+                        <h1>Download Now</h1>
+                        <p> Get your app up and running now! Visit the PlayStore or use the web version.</p>
+                    </div>
+                </div><!-- end col -->
+                <div class="col-md-6 iphones">
+                    <div class="text-center image-center">
+                        <img src="uploads/iphones.png" alt="" class="img-fluid wow fadeInUp">
+                    </div>
+                </div>
+            </div><!-- end row -->
+        </div><!-- end container -->
+    </div><!-- end section -->
+	
+	<div class="download-icons">
+		<div class="box-icon">
+			<div class="btn-buy apple-button">
+				<a href="https://play.google.com/store/apps/details?id=com.delivery.boss.gh&hl=en" target="_blank"><i class="flaticon-android"></i> Download on the <strong>Google Play</strong></a>
+			</div>
+			<div class="btn-buy apple-button">
+				<a href="app/index.html" target="_blank"><i class="flaticon-world-wide-web"></i> Use the <strong>Web App</strong></a>
+			</div>
+		</div>
+	</div>
+
+
+
+    <div id="pricing" class="section lb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Pricing</h3>
+                <p>There are two different Packages <strong>Monthly & Annually.</strong><br> Make money from doing what you love the most...</p>
+            </div><!-- end title -->
+
+            <div class="row">
+                <div class="col-md-6 col-sm-6">
+                    <div class="pricingTable active">
+                        <div class="price-value">GH₵20
+                        </div>
+                        <h3 class="title">Monthly</h3>
+                    </div>
+                </div>
+
+                <div class="col-md-6 col-sm-6">
+                    <div class="pricingTable active">
+                        <div class="price-value">GH₵200
+                        </div>
+                        <h3 class="title">Annually</h3>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- end container -->
+    </div><!-- end section -->
+
+	
+	
+	<div id="faqs" class="section lb">
+		<div class="container">
+			<div class="row align-items-center">
+				<div class="col-lg-6 col-md-6">
+					<div class="accordion" id="accordionExample">
+					  <div class="card">
+						<div class="card-header" id="headingOne">
+						  <h5 class="mb-0">
+							<a href="" class="btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+								What is the DeliveryBoss App ?
+							</a>
+						  </h5>
+						</div>
+
+						<div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordionExample">
+						  <div class="card-body">
+							This app has been designed to be very user-friendly. With this app, you can search for a stationary or moving delivery service. Just open the app to see available delivery services based on proximity and select anyone. The app allows you to call the delivery service right-away or send your location. All our riders have been certified and verified. Your goods are safe in our hands.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card">
+						<div class="card-header" id="headingTwo">
+						  <h5 class="mb-0">
+							<a href="" class="btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+								How to install this app ?
+							</a>
+						  </h5>
+						</div>
+						<div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+						  <div class="card-body">
+							Installing the DeliveryBoss app is very easy. Android users can download and install it from the PlayStore. iOS and other users can use the wep app version. We are however working on a stand-alone iOS version.
+						  </div>
+						</div>
+					  </div>
+					  <div class="card">
+						<div class="card-header" id="headingThree">
+						  <h5 class="mb-0">
+							<a href="" class="btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+							  How do I register to be a Rider ?
+							</a>
+						  </h5>
+						</div>
+						<div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+						  <div class="card-body">
+							To register to be a rider, you do not require a seperate app as all features are bundled within the same app. Simply access the <b>Rider Portal</b> to register and create an account. You will also have to make payment based on the selected package. Once the account is verified, you can go online and start making money.
+						  </div>
+						</div>
+					  </div>
+					</div>					
+				</div>
+				<div class="col-lg-6 col-md-6">
+					<div class="faq-right">
+						<img src="uploads/about-01.png" class="img-fluid" alt="" />
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+    <div id="contact" class="section lb">
+        <div class="container">
+            <div class="section-title text-center">
+                <h3>Get in Touch</h3>
+				<div class="info-box" data-toggle="tooltip" data-placement="bottom" title="Send us a message through the form below. We typically reply within 24 hours.">
+					<i class="fa fa-question-circle" aria-hidden="true"></i>
+				</div>
+            </div><!-- end title -->
+
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="contact_form">
+                        <form id="contactform" class="row"  name="contactform">
+                            <div class="row">
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="fname" id="fname" class="form-control" placeholder="First Name" required>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="lname" id="lname" class="form-control" placeholder="Last Name" required>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <input type="email" name="email" id="email" class="form-control" placeholder="Your Email" required>
+                                </div>
+                                <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                                    <input type="text" name="phone" id="phone" class="form-control" placeholder="Your Phone" required>
+                                </div>
+                                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                    <textarea class="form-control" name="comment" id="comment" rows="6" placeholder="Your Message.." required></textarea>
+                                </div>
+                                <div class="text-center pdi">
+                                    <button type="submit" value="SEND" id="submit" class="hvr-bounce-to-right get-btn">SEND</button>
+								</div>
+								<div id="message" class="text-center pdi"></div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!-- end section -->
+
+    <footer class="footer">
+		<div class="container"> 
+			<div class="row"> 
+				<div class="col-md-12"> 
+					<div class="subscribe-text">
+						<h3>Join our Mailing List</h3>
+						<p>We will respect your privacy. We will not spam you in anyway.</p>
+						<p id="subsMessage"></p>
+					</div>
+					
+					<div class="subscribe-form">
+						<form id="subsForm">
+							<input class="form-control" id="subsEmail" name="subsEmail" placeholder="Email Address..." required="" type="email">
+							<button type="submit" class="btn subscribe-btn"><i class="fa fa-paper-plane-o" aria-hidden="true"></i></button>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+    </footer><!-- end footer -->
+
+    <div class="copyrights">
+        <div class="container">
+            <div class="footer-distributed">
+                <div class="footer-left">                    
+                    <p class="footer-company-name">All Rights Reserved. &copy; 2020 <a href="#">DeliveryBoss</a> 
+					</p>
+                </div>
+            </div>
+        </div><!-- end container -->
+    </div><!-- end copyrights -->
+
+    <a href="#home" data-scroll class="dmtop global-radius"><i class="fa fa-angle-up"></i></a>
+
+    <!-- ALL JS FILES -->
+    <script src="js/all.js"></script>
+    <!-- ALL PLUGINS -->
+    <script src="js/custom.js"></script>
+	<script src="js/swiper.min.js"></script>
+	<script>
+		var swiper = new Swiper('.swiper-container', {
+			loop: true,
+			effect: 'coverflow',
+			centeredSlides: true,
+			loopFillGroupWithBlank: true,
+			slidesPerView: 3,
+            initialSlide: 3,
+            keyboardControl: true,
+            mousewheelControl: false,
+            lazyLoading: true,
+			pagination: {
+				el: '.swiper-pagination',
+				clickable: true,
+			},
+			navigation: {
+				nextEl: '.swiper-button-next',
+				prevEl: '.swiper-button-prev',
+			},
+			breakpoints: {
+                1199: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+                991: {
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                },
+                767: {
+                    slidesPerView: 2,
+                    spaceBetween: 10,
+                },
+                575: {
+                    slidesPerView: 1,
+                    spaceBetween: 3,
+                }
+            }
+		});
+		
+		
+		  // Your web app's Firebase configuration
+		  var firebaseConfig = {
+			apiKey: "AIzaSyA_gnTxfwtkxKZh3Q00PiINNv9wo_UsCLc",
+			authDomain: "delivery-boss-app.firebaseapp.com",
+			databaseURL: "https://delivery-boss-app.firebaseio.com",
+			projectId: "delivery-boss-app",
+			storageBucket: "delivery-boss-app.appspot.com",
+			messagingSenderId: "302420465233",
+			appId: "1:302420465233:web:4e407eb9833299b0be8a70",
+			measurementId: "G-N6Q4L1PEXF"
+		};
+		// Initialize Firebase
+		firebase.initializeApp(firebaseConfig);
+
+		var db = firebase.firestore();
+		
+		document.querySelector("#contactform").addEventListener("submit", evt => {
+		  evt.preventDefault();
+		  //Update user info into Firebase Authentication
+		  db.collection("website").add({
+			fname: document.querySelector("#fname").value,
+			lname: document.querySelector("#lname").value,
+			email: document.querySelector("#email").value,
+			phone: document.querySelector("#phone").value,
+			comment: document.querySelector("#comment").value
+		  }).then(function() {
+			document.querySelector("#message").innerHTML="Submitted Successfully";
+		  }).catch(function(error) {
+			// An error happened.
+			document.querySelector("#message").innerHTML="Error! Message not sent.";
+		  });
+		});
+		
+		document.querySelector("#subsForm").addEventListener("submit", evt => {
+		  evt.preventDefault();
+		  //Update user info into Firebase Authentication
+		  db.collection("subscribe").doc(document.querySelector("#subsEmail").value).set({
+			email: document.querySelector("#subsEmail").value
+		  }).then(function() {
+			document.querySelector("#subsMessage").innerHTML="Congrats! You have been added to our mailing list.";
+		  }).catch(function(error) {
+			// An error happened.
+			document.querySelector("#subsMessage").innerHTML="Error! Request not sent.";
+		  });
+		});
+	  </script>
+	  
+	  
+
+</body>
+</html>
